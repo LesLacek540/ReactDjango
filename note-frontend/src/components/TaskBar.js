@@ -46,9 +46,31 @@ function TaskBar() {
   return (
     <div className="tasks-section">
       <h2>Tasks</h2>
-      <div className="form-section">
+      <div className="form-card">
         <form onSubmit={handleSubmit}>
-          {/* ... (keep existing form fields) ... */}
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Task title"
+            required
+          />
+          <input
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+            required
+          />
+          <div className="color-picker">
+            <label htmlFor="task-color">Task Color: </label>
+            <input
+              type="color"
+              id="task-color"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+          <button type="submit">Add Task</button>
         </form>
       </div>
       <div className="card-grid">

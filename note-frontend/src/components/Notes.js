@@ -46,9 +46,31 @@ function Notes() {
   return (
     <div className="notes-section">
       <h2>Notes</h2>
-      <div className="form-section">
+      <div className="form-card">
         <form onSubmit={handleSubmit}>
-          {/* ... (keep existing form fields) ... */}
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title"
+            required
+          />
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Content"
+            required
+          />
+          <div className="color-picker">
+            <label htmlFor="note-color">Note Color: </label>
+            <input
+              type="color"
+              id="note-color"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+          <button type="submit">Add Note</button>
         </form>
       </div>
       <div className="card-grid">
@@ -60,7 +82,6 @@ function Notes() {
             onClick={() => handleNoteClick(note)}
           >
             <h3>{note.title}</h3>
-            <p>{note.content}</p>
           </div>
         ))}
       </div>
