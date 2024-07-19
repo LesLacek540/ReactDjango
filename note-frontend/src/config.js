@@ -1,6 +1,6 @@
 // src/config.js
 const production = {
-    API_URL: 'ec2-18-217-121-142.us-east-2.compute.amazonaws.com',
+    API_URL: 'ec2-18-217-121-142.us-east-2.compute.amazonaws.com/api',
   };
   
   const development = {

@@ -56,6 +56,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'noteapp.urls'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://agenda-bucket-frontend-lpl.s3-website.us-east-2.amazonaws.com",
+    "https://d1jqsoo825sbwa.cloudfront.net",
 ]
 
 
