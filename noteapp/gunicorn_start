@@ -1,0 +1,24 @@
+#!/bin/bash
+NAME="ReactDjango"
+DIR=/home/ec2-user/ReactDjango/noteapp
+USER=ec2-user
+GROUP=ec2-user
+WORKERS=3
+BIND=unix:/home/ec2-user/ReactDjango/run/gunicorn.sock
+DJANGO_SETTINGS_MODULE=your_project.settings
+DJANGO_WSGI_MODULE=ReactDjango.wsgi
+LOG_LEVEL=error
+
+cd $DIR
+source venv/bin/activate
+
+exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $WORKERS \
+  --user=$USER \
+  --group=$GROUP \
+  --bind=$BIND \
+  --log-level=$LOG_LEVEL \
+  --log-file=-
+
+
