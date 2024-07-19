@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { config } from '../config';
 
 function Details({ item, type, onClose, onUpdate, onDelete }) {
   const [title, setTitle] = useState(item.title);
@@ -13,7 +14,7 @@ function Details({ item, type, onClose, onUpdate, onDelete }) {
       if (type === 'note') updatedItem.content = content;
       if (type === 'task') updatedItem.due_date = dueDate;
 
-      await axios.put(`http://localhost:8000/api/${type}s/${item.id}/`, updatedItem);
+      await axios.put(`${config.API_URL}${type}s/${item.id}/`, updatedItem);
       onUpdate(updatedItem);
       onClose();
     } catch (error) {
@@ -23,7 +24,7 @@ function Details({ item, type, onClose, onUpdate, onDelete }) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/api/${type}s/${item.id}/`);
+      await axios.delete(`${config.API_URL}${type}s/${item.id}/`);
       onDelete(item.id);
       onClose();
     } catch (error) {

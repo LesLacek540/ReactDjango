@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Details from './Details';
+import { config } from '../config';
 
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -14,14 +15,14 @@ function Notes() {
   }, []);
 
   const fetchNotes = async () => {
-    const response = await axios.get('http://localhost:8000/api/notes/');
+    const response = await axios.get(`${config.API_URL}/notes/`);
     setNotes(response.data.reverse());
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/notes/', { title, content, color });
+      await axios.post(`${config.API_URL}/notes/`, { title, content, color });
       setTitle('');
       setContent('');
       setColor('#ffffff');

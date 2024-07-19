@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Details from './Details';
+import { config } from '../config';
+
 
 function TaskBar() {
   const [tasks, setTasks] = useState([]);
@@ -14,14 +16,14 @@ function TaskBar() {
   }, []);
 
   const fetchTasks = async () => {
-    const response = await axios.get('http://localhost:8000/api/tasks/');
+    const response = await axios.get(`${config.API_URL}/tasks/`);
     setTasks(response.data.reverse());
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/tasks/', { title, due_date: dueDate, color });
+      await axios.post(`${config.API_URL}/tasks/`, { title, due_date: dueDate, color });
       setTitle('');
       setDueDate('');
       setColor('#ffffff');
